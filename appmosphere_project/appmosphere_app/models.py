@@ -7,3 +7,12 @@ class Profilepage (models.Model):
 
     def __str__(self):
         return self.username
+    
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=500)
+    like = models.BooleanField(True)
+    dislike = models.BooleanField(False)
+
+    def __str__(self):
+        return self.comment

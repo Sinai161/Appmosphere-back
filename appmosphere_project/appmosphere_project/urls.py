@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from appmosphere_app.views import ProfilePageViewSet
+from appmosphere_app.views import CommentViewSet
 
  
 router = DefaultRouter()
 router.register(r'profilepage', ProfilePageViewSet)
+router.register(r'comment',CommentViewSet)
 
 urlpatterns = [
     path('api/', include (router.urls)),
