@@ -1,6 +1,18 @@
 from django.shortcuts import render
+from .models import Profilepage
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv:QiSATtCQFlwN58VU//ashleygalvan161:@cluster161.sjfxrgd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster161')
-db = client['appmosphere-db']
+from . serializer import ProfilePageSerializer
+from rest_framework import viewsets
+
+from rest_framework.response import Response
+
+
+client = MongoClient('URI')
+
+class ProfilePageViewSet(viewsets.ModelViewSet):
+    queryset = Profilepage.objects.all()
+    serializer_class = ProfilePageSerializer
+
+
 
 
