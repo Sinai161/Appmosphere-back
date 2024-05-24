@@ -16,3 +16,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+    
+class Feed(models.Model):
+    img = models.CharField(max_length=300)
+    comment = models.CharField(max_length=500)
+    user = models.CharField(max_length=300)

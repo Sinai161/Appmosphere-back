@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Profilepage, Comment
+from .models import Profilepage, Comment, Feed
 from pymongo import MongoClient
-from . serializer import ProfilePageSerializer, CommentSerializer
+from . serializer import ProfilePageSerializer, CommentSerializer, FeedSerializer
 from rest_framework import viewsets
 
 from rest_framework.response import Response
@@ -16,6 +16,10 @@ class ProfilePageViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+class FeedViewSet(viewsets.ModelViewSet):
+    queryset = Feed.objects.all()
+    serializer_class = FeedSerializer
 
 
 

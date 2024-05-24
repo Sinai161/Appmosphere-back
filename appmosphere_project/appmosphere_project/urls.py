@@ -19,11 +19,13 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from appmosphere_app.views import ProfilePageViewSet
 from appmosphere_app.views import CommentViewSet
+from appmosphere_app.views import FeedViewSet
 
  
 router = DefaultRouter()
 router.register(r'profilepage', ProfilePageViewSet)
 router.register(r'comment',CommentViewSet)
+router.register(r'feed', FeedViewSet)
 
 urlpatterns = [
     path('api/', include (router.urls)),
