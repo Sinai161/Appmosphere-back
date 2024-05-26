@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework.authToken',
     'corsheaders',
     'rest_framework',
     'appmosphere_app',
@@ -58,15 +59,23 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny']
+    'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWT'
+    ]
 }
+
+
+# added the SIMPLE_JWT token configurations to implement an access/refresh logic
+
 
 ROOT_URLCONF = 'appmosphere_project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'frontend'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,8 +96,11 @@ WSGI_APPLICATION = 'appmosphere_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'appmosphere-db',
+        'CLIENT': {
+                'host': 'mongodb+srv://ashleygalvan161:QiSATtCQFlwN58VU@cluster161.sjfxrgd.mongodb.net/?retryWrites=true&w=majority'
+            }  
     }
 }
 

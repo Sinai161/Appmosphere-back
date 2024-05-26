@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from .models import Profilepage, Comment, Feed
+from .models import Profilepage, Comment, Feed, User
 from pymongo import MongoClient
-from . serializer import ProfilePageSerializer, CommentSerializer, FeedSerializer
+from . serializer import ProfilePageSerializer, CommentSerializer, FeedSerializer, UserSerializer
 from rest_framework import viewsets
-
 from rest_framework.response import Response
+import os
 
 
-client = MongoClient('URI')
+# client = MongoClient(os.environ.get('URI'))
+# db = client['appmosphere_db']
 
 class ProfilePageViewSet(viewsets.ModelViewSet):
     queryset = Profilepage.objects.all()
@@ -21,7 +22,13 @@ class FeedViewSet(viewsets.ModelViewSet):
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 
+# API view for django.contrib.auth.models.User
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
+    
+  
 
 
 

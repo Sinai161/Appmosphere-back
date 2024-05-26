@@ -20,14 +20,17 @@ from rest_framework.routers import DefaultRouter
 from appmosphere_app.views import ProfilePageViewSet
 from appmosphere_app.views import CommentViewSet
 from appmosphere_app.views import FeedViewSet
+from appmosphere_app.views import UserViewSet
 
  
 router = DefaultRouter()
 router.register(r'profilepage', ProfilePageViewSet)
 router.register(r'comment',CommentViewSet)
 router.register(r'feed', FeedViewSet)
+router.register(r'user',UserViewSet, 'user')
 
 urlpatterns = [
+    path("api-auth/", include("rest_framework.urls")),
     path('api/', include (router.urls)),
     path('admin/', admin.site.urls),
 ]
