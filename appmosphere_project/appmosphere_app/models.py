@@ -8,17 +8,7 @@ class User (models.Model):
 
     def __str__(self):
         return self.username
-
-
-class Profilepage (models.Model):
-    username = models.CharField(max_length=50)
-    img = models.CharField(max_length=250)
-    bio = models.CharField(max_length=500)
-
-    def __str__(self):
-        return self.username
     
-
 class Comment(models.Model):
     comment = models.CharField(max_length=500)
     like = models.BooleanField(True)
@@ -26,11 +16,24 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+
+
+class Profilepage (models.Model):
+    username = models.CharField(max_length=50)
+    img = models.CharField(max_length=250)
+    bio = models.CharField(max_length=500)
+
+    comment = models.ManyToManyField(Comment)
+
+    def __str__(self):
+        return self.username
+    
     
 class Feed(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.CharField(max_length=300)
     comment = models.CharField(max_length=500)
-    user = models.CharField(max_length=300)
 
+    
     def __str__(self):
         return self.user
